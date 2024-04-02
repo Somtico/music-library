@@ -108,8 +108,8 @@ const addTrackToPlaylist = function(trackId, playlistId) {
 };
 
 // TEST:
-addTrackToPlaylist("t03", "p01");
-console.log(`${playlistId}: ${library.playlists[playlistId]["tracks"]}`);
+const updatedPlaylist = addTrackToPlaylist("t03", "p01");
+console.log(updatedPlaylist); // Log the updated playlist object
 
 console.log("------------------\n");
 
@@ -122,10 +122,43 @@ const generateUid = function() {
 };
 
 // adds a track to the library
-const addTrack = function(name, artist, album) {};
+const addTrack = function(name, artist, album) {
+  // Create a variable to store the unique id in
+  const newId = generateUid();
+  // Add the new track object using the information passed into the argument
+  library.tracks[newId] = {
+    id: newId,
+    name: name,
+    artist: artist,
+    album: album
+  };
+  // Return the unique id to be used later
+  return newId;
+};
+
+console.log("------------------\n");
+
+// TEST:
+const newTrack = addTrack("My Desire", "Theophilus Sunday", "Eternal");
+console.log(library);
 
 // adds a playlist to the library
-const addPlaylist = function(name) {};
+const addPlaylist = function(name) {
+  // Create a variable to store the unique id in
+  const newId = generateUid();
+    // Add the new playlist object using the information passed into the argument
+  library.playlists[newId] = {
+    id: newId,
+    name: name,
+    tracks: [newTrack]
+  };
+};
+
+console.log("------------------\n");
+
+// TEST:
+addPlaylist("Latest Playlist");
+console.log(library.tracks, library.playlists);
 
 // STRETCH:
 // given a query string string, prints a list of tracks
