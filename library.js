@@ -24,7 +24,7 @@ const library = {
     p02: { id: "p02", name: "Other Playlist", tracks: ["t03"] },
   },
 };
-// console.log(library.playlists.p01);
+
 
 /////////////////////////////
 // FUNCTIONS TO IMPLEMENT:
@@ -35,6 +35,7 @@ const library = {
 // p02: Other Playlist - 1 tracks
 
 const printPlaylists = function(library) {
+  // Loop over the playlists
   for (let list in library.playlists) {
     console.log(
       `${library.playlists[list]["id"]}: ${library.playlists[list]["name"]} - ${library.playlists[list]["tracks"].length} tracks\n`
@@ -42,6 +43,7 @@ const printPlaylists = function(library) {
   }
 };
 
+// TEST:
 printPlaylists(library);
 
 // const printPlaylists = function (library) {
@@ -62,12 +64,15 @@ console.log("------------------\n");
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 const printTracks = function(library) {
+  // Loop over the tracks
   for (let list in library.tracks) {
     console.log(
       `${library.tracks[list]["id"]}: ${library.tracks[list]["name"]} by ${library.tracks[list]["artist"]} (${library.tracks[list]["album"]})\n`
     );
   }
 };
+
+// TEST
 printTracks(library);
 
 console.log("------------------\n");
@@ -77,24 +82,36 @@ console.log("------------------\n");
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 const printPlaylist = function(playlistId) {
-  console.log(
+  console.log( // Print the first line
     `${library.playlists[playlistId]["id"]}: ${library.playlists[playlistId]["name"]} - ${library.playlists[playlistId]["tracks"].length} tracks\n`
   );
+  // Loop over the playlist ID given
   for (let track of library.playlists[playlistId]["tracks"]) {
-    // console.log(track);
-
+    // Print the information of the tracks for the given playlist ID
     console.log(
       `${library.tracks[track]["id"]}: ${library.tracks[track]["name"]} by ${library.tracks[track]["artist"]} (${library.tracks[track]["album"]})\n`
     );
   }
 };
 
+// TEST:
 printPlaylist("p01");
 
 console.log("------------------\n");
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function(trackId, playlistId) {};
+const addTrackToPlaylist = function(trackId, playlistId) {
+  // First, push the new track into the playlist
+  library.playlists[playlistId]["tracks"].push(trackId);
+  // Return the updated playlist object
+  return library.playlists[playlistId];
+};
+
+// TEST:
+addTrackToPlaylist("t03", "p01");
+console.log(`${playlistId}: ${library.playlists[playlistId]["tracks"]}`);
+
+console.log("------------------\n");
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
