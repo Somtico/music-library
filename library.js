@@ -46,17 +46,6 @@ const printPlaylists = function(library) {
 // TEST:
 printPlaylists(library);
 
-// const printPlaylists = function (library) {
-//   for (let album in library) {
-//     if (album === "playlists") {
-//       for (let list in album) {
-//         // console.log(`${list['id']}: ${list['name']} - ${list["tracks"].length} tracks\n`);
-//         console.log(list);
-//       }
-//     }
-//   }
-// };
-
 console.log("------------------\n");
 
 // prints a list of all tracks, using the following format:
@@ -146,7 +135,7 @@ console.log(library);
 const addPlaylist = function(name) {
   // Create a variable to store the unique id in
   const newId = generateUid();
-    // Add the new playlist object using the information passed into the argument
+  // Add the new playlist object using the information passed into the argument
   library.playlists[newId] = {
     id: newId,
     name: name,
